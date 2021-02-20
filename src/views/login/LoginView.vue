@@ -1,0 +1,21 @@
+<template>
+  <div class="login">
+    <div class="login_left_wrapper">
+      <img src="~assets/img/login/login_bg.jpg" alt="">
+    </div>
+    登录页面
+  </div>
+</template>
+
+<script>
+export default {
+  name: "LoginView"
+}
+</script>
+
+<style scoped>
+.login_left_wrapper{
+  height: 624px;
+  width: 56%;
+}
+</style>
