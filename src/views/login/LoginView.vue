@@ -3,7 +3,9 @@
     <div class="login_left_wrapper">
       <img src="~assets/img/login/login_bg.jpg" alt="">
     </div>
-    登录页面
+    <div class="login_right_wrapper">
+      <div>表单</div>
+    </div>
   </div>
 </template>
 
