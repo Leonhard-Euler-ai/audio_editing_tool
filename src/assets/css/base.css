@@ -7,7 +7,7 @@ em, i {
   font-style: normal
 }
 
-li {
+ol, ul, li {
   list-style: none
 }
 
