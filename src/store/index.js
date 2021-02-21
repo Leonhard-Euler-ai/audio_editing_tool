@@ -3,13 +3,16 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import mutations from './mutations'
+import actions from './actions'
+import getters from "./getters";
+
 export default new Vuex.Store({
   state: {
+    isLogin: false
   },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+  mutations,
+  actions,
+  getters,
+  modules: {}
 })

@@ -10,8 +10,27 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
-  name: "LoginView"
+  name: "LoginView",
+  computed:{
+    ...mapGetters(['loginStatus'])
+  },
+  methods:{
+    // 登录按钮点击事件
+    // commitLogin() {
+    //   向服务器发送登录请求
+    //   requestLogin(username, password).then(res => {
+    //     if (success) {
+    //       //改变登录状态
+    //       //this.$store.dispatch('loginSucceed')
+    //     } else {
+    //       this.$message.error('用户名或密码错误')
+    //     }
+    //   })
+    // }
+  }
 }
 </script>
 
