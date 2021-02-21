@@ -1,39 +1,38 @@
 <template>
-  <div class="login">
-    <div class="login_left_wrapper">
+  <div class="loginView">
+    <div class="loginViewLeftPart">
       <img src="~assets/img/login/login_bg.jpg" alt="">
     </div>
-    <div class="login_right_wrapper">
-      <LoginViewLeft/>
+    <div class="loginViewRightPart">
+      <LoginViewMain/>
     </div>
   </div>
 </template>
 
 <script>
-
-  import LoginViewLeft from "./LoginViewLeft";
+  import LoginViewMain from "./loginViewComps/LoginViewMain";
 
   export default {
     name: "LoginView",
     components: {
-      LoginViewLeft
+      LoginViewMain
     }
   }
 </script>
 
 <style scoped>
-  .login_left_wrapper {
+  .loginViewLeftPart {
     float: left;
-    height: 624px;
+    height: 100%;
     width: 56%;
   }
 
-  .login_left_wrapper img {
+  .loginViewLeftPart img {
     width: 100%;
     height: 100%;
   }
 
-  .login_right_wrapper {
+  .loginViewRightPart {
     float: left;
     width: 44%;
     height: 100%;

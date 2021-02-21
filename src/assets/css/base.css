@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0
+}
+
+em, i {
+  font-style: normal
+}
+
+li {
+  list-style: none
+}
+
+img {
+  border: 0;
+  vertical-align: middle
+}
+
+button {
+  cursor: pointer
+}
+
+a {
+  color: #ff662f;
+  text-decoration: none
+}
+
+a:active {
+  outline: 0;
+  blr: expression(this.onFocus=this.blur());
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button, input {
+  font-family: Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif
+}
+
+input {
+  border: 0;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.clearFix {
+  *zoom: 1;
+}
+
+.clearFix:after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+  overflow: hidden;
+}

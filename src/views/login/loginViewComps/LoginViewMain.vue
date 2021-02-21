@@ -1,17 +1,16 @@
 <template>
-  <div class="LoginViewLeft">
+  <div class="loginViewMain">
     <div>
-      <a href="https://www.ommdata.com/" title="返回首页" class="TopButton-left">返回首页</a>
-      <a href="https://www.ommdata.com/front/login" title="学员登录" class="TopButton-right">学员登录</a>
+      <a href="#" >返回首页</a>
+      <a href="#" class="administratorLoginButton">管理员登录</a>
     </div>
-    <div class="LoginFromBox">
-      <a href="#" title="手机号登录" class="fromTitle">手机号登录</a>
+    <div class="loginFromBox">
+      <a href="#" class="fromTitle">手机号登录</a>
       <LoginForm/>
       <div class="fromBottom">
-        <a href="#" title="去注册"
-           class="f-fM tac fSize16 login-options-2019-zc">
-          <span class="register-line register-line-l"></span>
-          <span class="register-line register-line-r"></span>
+        <a href="#">
+          <span class="registerLine registerLine-l"></span>
+          <span class="registerLine registerLine-r"></span>
           还没账号？去注册
         </a>
       </div>
@@ -32,31 +31,11 @@
 </script>
 
 <style scoped>
-  .LoginViewLeft {
+  .loginViewMain {
     padding: 20px 40px 20px;
   }
 
-  /*以下三个样式是全局都用得到的，但是我不知道写哪，暂时写在这里了*/
-  a {
-    color: #ff662f;
-    text-decoration: none
-  }
-
-  a:active {
-    outline: 0;
-    blr: expression(this.onFocus=this.blur());
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  .TopButton-left {
-    font-size: 14px;
-
-  }
-
-  .TopButton-right {
+  .administratorLoginButton {
     display: block;
     float: right;
     background-color: #ff662f;
@@ -69,12 +48,12 @@
     color: #fff;
   }
 
-  .TopButton-right:hover {
+  .administratorLoginButton:hover {
     text-decoration: none;
     opacity: 0.85;
   }
 
-  .LoginFromBox {
+  .loginFromBox {
     width: 75%;
     margin: 45px auto 0;
   }
@@ -97,7 +76,7 @@
     line-height: 30px;
   }
 
-  .register-line {
+  .registerLine {
     background: #ff662f;
     position: absolute;
     width: 40px;
@@ -105,11 +84,11 @@
     top: 15px;
   }
 
-  .register-line-l {
+  .registerLine-l {
     left: -50px;
   }
 
-  .register-line-r {
+  .registerLine-r {
     right: -50px;
   }
 </style>
