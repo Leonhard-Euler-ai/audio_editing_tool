@@ -1,5 +1,5 @@
 export default {
-  loginStatus(state){
-    return state.isLogin
-  }
+    loginStatus(state) {
+        return state.authorization ? true : false
+    }
 }

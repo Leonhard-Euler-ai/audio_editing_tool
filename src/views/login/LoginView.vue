@@ -4,7 +4,11 @@
       <img src="~assets/img/login/login_bg.jpg" alt="">
     </div>
     <div class="login_right_wrapper">
-      <div>表单</div>
+      <div>
+        <p>登录表单</p>
+        <p>登录状态：{{loginStatus}}</p>
+        <button @click="login">登录</button>
+      </div>
     </div>
   </div>
 </template>
@@ -22,14 +26,21 @@ export default {
     // commitLogin() {
     //   向服务器发送登录请求
     //   requestLogin(username, password).then(res => {
-    //     if (success) {
-    //       //改变登录状态
-    //       //this.$store.dispatch('loginSucceed')
-    //     } else {
-    //       this.$message.error('用户名或密码错误')
-    //     }
+    //     ------------------
     //   })
     // }
+    // 直接登录成功,'123'为测试用的sessionId
+    login(){
+      window.sessionStorage.setItem('authorization', '123')
+      this.$store.dispatch('loginSucceed','123').then(res=>{
+        this.$message.success({
+          message:res,
+          offset:200
+        })
+      })
+      this.$router.push('/main')
+    },
+
   }
 }
 </script>
