@@ -25,19 +25,19 @@
       <el-progress class="el-progress" type="circle" :percentage="70" status="warning"></el-progress>
       <el-progress class="el-progress" type="circle" :percentage="50" status="exception"></el-progress>
     </div>
-<!--    <MainViewFooter/>-->
+    <MainViewFooter/>
   </div>
 </template>
 
 <script>
   import MainViewHeader from "./MainViewComps/MainViewHeader";
-  // import MainViewFooter from "./MainViewComps/MainViewFooter";
+  import MainViewFooter from "./MainViewComps/MainViewFooter";
 
   export default {
     name: "Main",
     components: {
       MainViewHeader,
-      // MainViewFooter
+      MainViewFooter
     }
   }
 </script>
