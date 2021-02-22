@@ -115,6 +115,10 @@
     left: 1px;
   }
 
+  #pwd .inputIco:nth-child(1) {
+    padding-left: 3px;
+  }
+
   .passwordVisibility {
     display: block;
     width: 18px;
