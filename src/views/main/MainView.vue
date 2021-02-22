@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import MainViewHeader from "./MainViewComps/MainViewHeader";
+  import MainViewHeader from "./mainViewComps/MainViewHeader";
 
   export default {
     name: "Main",
