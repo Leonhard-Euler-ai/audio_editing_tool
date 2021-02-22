@@ -1,19 +1,19 @@
 <template>
   <div class="loginForm">
     <ol>
-      <li>
+      <li style="margin-bottom: 25px">
         <p class="label">手机号</p>
-        <div class="inputBox">
+        <div class="inputBox" style="position: relative">
           <em class="inputIco">
             <img src="~assets/img/login/login_mobile.png">
           </em>
           <input type="text" placeholder="请输入手机号" v-model="phone" @blur="phoneInputBlur"/>
+          <div class="phoneTip">
+            <div>{{ phonePatternTip }}</div>
+          </div>
         </div>
       </li>
-      <li  class="phoneTip">
-        <div>{{ phonePatternTip }}</div>
-      </li>
-      <li v-if="isShowPassword">
+      <li v-if="!isShowPassword">
         <p class="label">密码</p>
         <div class="inputBox">
           <em class="inputIco">
@@ -119,6 +119,9 @@ export default {
 }
 
 .phoneTip {
+  position: absolute;
+  top: 40px;
+  left: 0px;
   font-size: 10px;
   color: red;
   height: 10px;
