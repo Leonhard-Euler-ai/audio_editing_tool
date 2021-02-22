@@ -35,7 +35,7 @@
           </a>
         </li>
         <li class="mobileClient">
-          <em class="iconFont"></em>下载APP
+          <img src="~assets/img/login/login_mobile.png">下载APP
         </li>
       </ul>
     </div>
