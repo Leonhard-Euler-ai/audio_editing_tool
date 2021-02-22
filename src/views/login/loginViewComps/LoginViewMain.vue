@@ -1,21 +1,20 @@
 <template>
   <div class="loginViewMain">
     <div>
-      <a href="#" >返回首页</a>
-      <a href="#" class="administratorLoginButton">管理员登录</a>
+      <a>返回首页</a>
+      <a class="administratorLoginButton">管理员登录</a>
     </div>
-    <div class="loginFromBox">
-      <a href="#" class="fromTitle">手机号登录</a>
+    <div class="loginFormBox">
+      <a class="formTitle">手机号登录</a>
       <LoginForm/>
-      <div class="fromBottom">
-        <a href="#">
+      <div class="formBottom">
+        <a>
           <span class="registerLine registerLine-l"></span>
           <span class="registerLine registerLine-r"></span>
           还没账号？去注册
         </a>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -53,22 +52,22 @@
     opacity: 0.85;
   }
 
-  .loginFromBox {
+  .loginFormBox {
     width: 75%;
     margin: 45px auto 0;
   }
 
-  .fromTitle {
+  .formTitle {
     font-size: 20px;
     font-weight: bold;
     color: #333;
   }
 
-  .fromBottom {
+  .formBottom {
     text-align: center;
   }
 
-  .fromBottom a {
+  .formBottom a {
     text-align: center;
     font-size: 16px;
     display: inline-block;

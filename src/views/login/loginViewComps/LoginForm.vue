@@ -1,39 +1,50 @@
 <template>
-  <div style="margin-top: 30px;">
+  <div class="loginForm">
     <ol>
-      <li id="phone">
-        <p>手机号</p>
-        <div class="inputBorder">
-          <em class="inputIco iconFont"></em>
-          <!--            <img src="https://www.ommdata.com/static/inxweb/img/2019-img/2019-login-mobile.png">-->
-          <input type="text"
-                 onkeyup='$("#errorMsg").text("");'
-                 placeholder="请输入手机号"/>
+      <li style="margin-bottom: 25px">
+        <p class="label">手机号</p>
+        <div class="inputBox" style="position: relative">
+          <em class="inputIco">
+            <img src="~assets/img/login/login_mobile.png">
+          </em>
+          <input type="text" placeholder="请输入手机号" v-model="phone" @blur="phoneInputBlur"/>
+          <div class="phoneTip">
+            <div>{{ phonePatternTip }}</div>
+          </div>
         </div>
       </li>
-      <li id="pwd">
-        <p>密码</p>
-        <div class="inputBorder">
-          <em class="inputIco iconFont"></em>
-          <!--            <img src="https://www.ommdata.com/static/inxweb/img/2019-img/2019-login-password.png">-->
-          <input type="password"
-                 onkeyup='$("#errorMsg").text("");'
-                 class="pass-show" placeholder="请输入密码" value=""/>
-          <!--          <em class="passwordVisibility iconFont"></em>-->
-          <!--上面的是隐藏型小眼睛字体图标-->
-          <em class="passwordVisibility iconFont"></em>
-          <!--          这个是睁开眼睛的字体图标-->
-          <!--<img src="https://www.ommdata.com/static/inxweb/img/2019-img/input-close.png">-->
-          <!-- <img src="https://www.ommdata.com/static/inxweb/img/2019-img/input-look.png"-->
+      <li v-if="!isShowPassword">
+        <p class="label">密码</p>
+        <div class="inputBox">
+          <em class="inputIco">
+            <img src="~assets/img/login/login_password.png">
+          </em>
+          <input type="password" placeholder="请输入密码" v-model="password"/>
+          <em class="passwordVisibility" @click="isShowPasswordImgClick">
+            <img src="~assets/img/login/input_close.png">
+          </em>
+        </div>
+      </li>
+      <li v-else>
+        <p class="label">密码</p>
+        <div class="inputBox">
+          <em class="inputIco">
+            <img src="~assets/img/login/login_password.png">
+          </em>
+          <input type="text" placeholder="请输入密码" v-model="password"/>
+          <em class="passwordVisibility" @click="isShowPasswordImgClick">
+            <img src="~assets/img/login/input_look.png">
+          </em>
         </div>
       </li>
       <li>
-        <p>验证码</p>
+        <p class="label">验证码</p>
         <div class="clearFix">
-          <div class="inputBorder" style="float: left">
-            <em class="inputIco iconFont"></em>
-            <!--              <img src="https://www.ommdata.com/static/inxweb/img/2019-img/2019-login-erification.png">-->
-            <input type="text" maxlength="4" placeholder="请输入验证码" value=""/>
+          <div class="inputBox" style="float: left">
+            <em class="inputIco">
+              <img src="~assets/img/login/login_erification.png">
+            </em>
+            <input type="text" maxlength="4" placeholder="请输入验证码" v-model="verCode"/>
           </div>
           <img src="https://www.ommdata.com/ran/ajax/random" alt="验证码，点击图片更换"
                class="verificationCode" maxlength="4"
@@ -41,12 +52,10 @@
         </div>
       </li>
       <li>
-        <p>登录状态：{{loginStatus}}</p>
-        <button @click="login" class="loginButton">登录</button>
+        <button class="loginButton" @click="commitLogin">登录</button>
       </li>
     </ol>
   </div>
-
 </template>
 
 <script>
@@ -54,10 +63,34 @@
 
   export default {
     name: "LoginForm",
+    data() {
+      return {
+        phonePatternTip: '',
+        isShowPassword: false,
+        phone: '',
+        password: '',
+        verCode: ''
+      }
+    },
     computed: {
       ...mapGetters(['loginStatus'])
     },
     methods: {
+      //事件监听相关的方法
+
+      //当手机号输入框失去焦点时,检测格式是否正确
+      phoneInputBlur() {
+        const pattern = /^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+        if (!pattern.test(this.phone)) {
+          this.phonePatternTip = "请输入正确的手机号!"
+        } else {
+          this.phonePatternTip = ''
+        }
+      },
+      //密码是否可见点击事件
+      isShowPasswordImgClick() {
+        this.isShowPassword = !this.isShowPassword
+      },
       // 登录按钮点击事件
       // commitLogin() {
       //   向服务器发送登录请求
@@ -65,8 +98,8 @@
       //     ------------------
       //   })
       // }
-      // 直接登录成功,'123'为测试用的sessionId
-      login() {
+      // 登录按钮点击事件,直接登录成功,'123'为测试用的sessionId
+      commitLogin() {
         window.sessionStorage.setItem('authorization', '123')
         this.$store.dispatch('loginSucceed', '123').then(res => {
           this.$message.success({
@@ -81,14 +114,27 @@
 </script>
 
 <style scoped>
-  p {
+  .loginForm {
+    margin-top: 30px;
+  }
+
+  .phoneTip {
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    font-size: 10px;
+    color: red;
+    height: 10px;
+  }
+
+  .label {
     font-size: 14px;
     margin-top: 15px;
     color: #333;
     margin-left: 5px;
   }
 
-  .inputBorder {
+  .inputBox {
     position: relative;
     margin-top: 5px;
     border: 1px solid #D6DBDF;
@@ -115,18 +161,13 @@
     left: 1px;
   }
 
-  #pwd .inputIco:nth-child(1) {
-    padding-left: 3px;
-  }
-
   .passwordVisibility {
     display: block;
     width: 18px;
     height: 18px;
     position: absolute;
-    top: 0px;
+    top: 9px;
     right: 8px;
-    cursor: pointer;
   }
 
   .verificationCode {
