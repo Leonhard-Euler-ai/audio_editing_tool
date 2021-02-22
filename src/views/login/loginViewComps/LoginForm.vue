@@ -4,9 +4,8 @@
       <li id="phone">
         <p>手机号</p>
         <div class="inputBorder">
-          <em class="inputIco">
-            <img src="https://www.ommdata.com/static/inxweb/img/2019-img/2019-login-mobile.png">
-          </em>
+          <em class="inputIco iconFont"></em>
+          <!--            <img src="https://www.ommdata.com/static/inxweb/img/2019-img/2019-login-mobile.png">-->
           <input type="text"
                  onkeyup='$("#errorMsg").text("");'
                  placeholder="请输入手机号"/>
@@ -15,25 +14,25 @@
       <li id="pwd">
         <p>密码</p>
         <div class="inputBorder">
-          <em class="inputIco">
-            <img src="https://www.ommdata.com/static/inxweb/img/2019-img/2019-login-password.png">
-          </em>
+          <em class="inputIco iconFont"></em>
+          <!--            <img src="https://www.ommdata.com/static/inxweb/img/2019-img/2019-login-password.png">-->
           <input type="password"
                  onkeyup='$("#errorMsg").text("");'
                  class="pass-show" placeholder="请输入密码" value=""/>
-          <em class="passwordVisibility">
-            <img src="https://www.ommdata.com/static/inxweb/img/2019-img/input-close.png">
-            <!-- <img src="https://www.ommdata.com/static/inxweb/img/2019-img/input-look.png"-->
-          </em>
+          <!--          <em class="passwordVisibility iconFont"></em>-->
+          <!--上面的是隐藏型小眼睛字体图标-->
+          <em class="passwordVisibility iconFont"></em>
+          <!--          这个是睁开眼睛的字体图标-->
+          <!--<img src="https://www.ommdata.com/static/inxweb/img/2019-img/input-close.png">-->
+          <!-- <img src="https://www.ommdata.com/static/inxweb/img/2019-img/input-look.png"-->
         </div>
       </li>
       <li>
         <p>验证码</p>
         <div class="clearFix">
           <div class="inputBorder" style="float: left">
-            <em class="inputIco">
-              <img src="https://www.ommdata.com/static/inxweb/img/2019-img/2019-login-erification.png">
-            </em>
+            <em class="inputIco iconFont"></em>
+            <!--              <img src="https://www.ommdata.com/static/inxweb/img/2019-img/2019-login-erification.png">-->
             <input type="text" maxlength="4" placeholder="请输入验证码" value=""/>
           </div>
           <img src="https://www.ommdata.com/ran/ajax/random" alt="验证码，点击图片更换"
@@ -121,8 +120,9 @@
     width: 18px;
     height: 18px;
     position: absolute;
-    top: 9px;
+    top: 0px;
     right: 8px;
+    cursor: pointer;
   }
 
   .verificationCode {

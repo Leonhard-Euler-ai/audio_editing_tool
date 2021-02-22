@@ -27,9 +27,16 @@
       <ul style="float:right">
         <li class="search">
           <input type="text" placeholder="搜索...">
+          <em class="searchIcon iconFont"></em>
         </li>
-        <li></li>
-        <li></li>
+        <li class="personalCenter">
+          <a href="#">
+            <em class="iconFont"></em>个人中心
+          </a>
+        </li>
+        <li class="mobileClient">
+          <em class="iconFont"></em>下载APP
+        </li>
       </ul>
     </div>
   </header>
@@ -81,6 +88,7 @@
   }
 
   .search {
+    position: relative;
     border: 1px solid #eee;
     border-radius: 20px;
     color: #666;
@@ -93,5 +101,35 @@
     width: 110px;
     -webkit-transition: .3s;
     background-color: #f9f9f9;
+  }
+
+  .searchIcon {
+    position: absolute;
+    top: -3px;
+    right: 9px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  ul li.personalCenter a {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  ul li.personalCenter a:hover {
+    background-color: #fff;
+    text-decoration: none;
+    color: #ff662f;
+  }
+
+  ul li.mobileClient {
+    font-size: 14px;
+    text-align: center;
+    margin: 12px 0 0 0;
+  }
+
+  ul li.mobileClient:hover {
+    color: #ff662f;
+    cursor: pointer;
   }
 </style>
