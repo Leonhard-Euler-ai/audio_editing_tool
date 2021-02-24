@@ -2,7 +2,7 @@
   <div>
     <MainViewHeader/>
     <div class="crumbs">
-      <el-steps :active="1" simple>
+      <el-steps active="1" simple>
         <el-step title="上传视频" icon="el-icon-upload"></el-step>
         <el-step title="编辑视频" icon="el-icon-edit"></el-step>
         <el-step title="确认更改" icon="el-icon-success"></el-step>
@@ -13,7 +13,7 @@
         class="upload-demo"
         drag
         action="https://jsonplaceholder.typicode.com/posts/"
-        multiple limit="1">
+        multiple >
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
         <div class="el-upload__tip" slot="tip">只能上传单个mp4文件，且不超过5GB</div>
@@ -30,8 +30,8 @@
 </template>
 
 <script>
-  import MainViewHeader from "./MainViewComps/MainViewHeader";
-  import MainViewFooter from "./MainViewComps/MainViewFooter";
+  import MainViewHeader from "./mainViewComps/MainViewHeader";
+  import MainViewFooter from "./mainViewComps/MainViewFooter";
 
   export default {
     name: "Main",
