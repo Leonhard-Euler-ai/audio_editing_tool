@@ -1,7 +1,7 @@
 <template>
   <div class="loginViewMain">
     <div>
-      <a >返回首页</a>
+      <a>返回首页</a>
       <a class="administratorLoginButton">管理员登录</a>
     </div>
     <div class="loginFormBox">
