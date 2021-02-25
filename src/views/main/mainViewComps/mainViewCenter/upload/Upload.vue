@@ -4,10 +4,9 @@
       <el-upload
         class="upload-demo"
         drag
-        action="https://jsonplaceholder.typicode.com/posts/"
-        multiple>
+        action="https://jsonplaceholder.typicode.com/posts/">
         <i class="el-icon-upload"></i>
-        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <div class="el-upload__text" @click="finishUpload">将文件拖到此处，或<em>点击上传</em></div>
         <div class="el-upload__tip" slot="tip">只能上传单个mp4文件，且不超过5GB</div>
       </el-upload>
     </div>
@@ -22,7 +21,12 @@
 
 <script>
   export default {
-    name: "Upload"
+    name: "Upload",
+    methods:{
+      finishUpload() {
+        this.$emit("finishUpload")
+      }
+    }
   }
 </script>
 

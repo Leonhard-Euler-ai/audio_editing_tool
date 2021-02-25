@@ -1,7 +1,7 @@
 <template>
   <el-button-group class="footer">
-    <el-button class="footerButton" type="danger" icon="el-icon-arrow-left" @click="logout">取消登录</el-button>
-    <el-button class="footerButton" type="success" :disabled="isDisabled" @click="edit">编辑视频<i
+    <el-button class="footerButton" type="danger" icon="el-icon-arrow-left" @click="preStepClick">{{preStepTitle}}</el-button>
+    <el-button class="footerButton" type="success" :disabled="isDisabled" @click="nextStepClick">{{nextStepTitle}}<i
       class="el-icon-arrow-right el-icon--right"></i></el-button>
   </el-button-group>
 </template>
@@ -15,21 +15,64 @@
         default() {
           return true
         }
+      },
+      preStepTitle:{
+        type:String,
+        default() {
+          return ""
+        }
+      },
+      nextStepTitle:{
+        type:String,
+        default() {
+          return ""
+        }
       }
     },
     methods: {
       logout() {
         window.sessionStorage.removeItem('authorization')
-        this.$store.dispatch('logout').then(res => {
-          this.$message.info({
-            message: res,
-            offset: 200
-          })
+        this.$store.dispatch('logout')
+          // .then(res => {
+          // this.$message.info({
+          //   message: res,
+          //   offset: 200
+          // })
           this.$router.replace('/login')
-        })
       },
-      edit() {
-        //在上传成功后解禁绿色按钮，点击即可转到编辑界面
+      preStepClick(){
+        if(this.preStepTitle==="退出登录"){
+          this.$confirm('确认退出登录?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type:"info"
+          }).then(() => {
+            this.logout()
+          }).catch(()=>{})
+          return
+        }
+        this.$emit("preStepClick")
+      },
+      nextStepClick(){
+        if(this.nextStepTitle==="确认提交"){
+          this.$confirm('确认提交?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type:"info"
+          }).then(() => {
+            this.$message({
+              type: 'success',
+              message: '提交成功!'
+            });
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消提交'
+            });
+          });
+          return
+        }
+        this.$emit("nextStepClick")
       }
     }
   }
