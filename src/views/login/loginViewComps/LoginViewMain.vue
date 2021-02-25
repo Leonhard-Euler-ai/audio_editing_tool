@@ -45,6 +45,7 @@
     line-height: 32px;
     text-align: center;
     color: #fff;
+    cursor: pointer;
   }
 
   .administratorLoginButton:hover {

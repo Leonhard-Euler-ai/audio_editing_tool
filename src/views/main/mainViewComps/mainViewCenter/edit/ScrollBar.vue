@@ -1,24 +1,50 @@
 <template>
   <div class="scrollBar">
     <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>
+        <ScrollBarTips/>
+      </li>
+      <li>
+        <ScrollBarTips/>
+      </li>
+      <li>
+        <ScrollBarTips/>
+      </li>
+      <li>
+        <ScrollBarTips/>
+      </li>
+      <li>
+        <ScrollBarTips/>
+      </li>
+      <li>
+        <ScrollBarTips/>
+      </li>
+      <li>
+        <ScrollBarTips/>
+      </li>
+      <li>
+        <ScrollBarTips/>
+      </li>
+      <li>
+        <ScrollBarTips/>
+      </li>
+      <li>
+        <ScrollBarTips/>
+      </li>
+      <li>
+        <ScrollBarTips/>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
+  import ScrollBarTips from "./ScrollBarTips";
   export default {
-    name: "ScrollBar"
+    name: "ScrollBar",
+    components: {
+      ScrollBarTips
+    }
   }
 </script>
 
@@ -38,9 +64,15 @@
 
   li {
     display: inline-block;
-    margin: 0 1px;
+    margin: 0 3px;
     width: 160px;
     height: 90px;
-    background-color: lightseagreen;
+  }
+
+  li:hover {
+    position: relative;
+    top: -2px;
+    left: -2px;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, .3);
   }
 </style>

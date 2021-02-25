@@ -3,6 +3,7 @@
     <MainViewHeader/>
     <!--    <Upload/>-->
     <Edit/>
+    <!--    <Submit/>-->
     <MainViewFooter :isDisabled="nextIsDisabled"/>
   </div>
 </template>
@@ -13,6 +14,7 @@
 
   import Upload from "./mainViewComps/mainViewCenter/upload/Upload";
   import Edit from "./mainViewComps/mainViewCenter/edit/Edit";
+  import Submit from "./mainViewComps/mainViewCenter/submit/Submit";
 
   export default {
     name: "Main",
@@ -25,7 +27,8 @@
       MainViewHeader,
       MainViewFooter,
       Upload,
-      Edit
+      Edit,
+      Submit
     }
   }
 </script>
