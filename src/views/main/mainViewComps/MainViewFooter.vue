@@ -1,13 +1,22 @@
 <template>
-  <el-button-group class="MainViewFooter">
-    <el-button type="danger" icon="el-icon-arrow-left" @click="logout">取消登录</el-button>
-    <el-button type="success" @click="edit">编辑视频<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+  <el-button-group class="footer">
+    <el-button class="footerButton" type="danger" icon="el-icon-arrow-left" @click="logout">取消登录</el-button>
+    <el-button class="footerButton" type="success" :disabled="isDisabled" @click="edit">编辑视频<i
+      class="el-icon-arrow-right el-icon--right"></i></el-button>
   </el-button-group>
 </template>
 
 <script>
   export default {
     name: "MainViewFooter",
+    props: {
+      isDisabled: {
+        type: Boolean,
+        default() {
+          return true
+        }
+      }
+    },
     methods: {
       logout() {
         window.sessionStorage.removeItem('authorization')
@@ -27,14 +36,14 @@
 </script>
 
 <style scoped>
-  .MainViewFooter {
+  .footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
   }
 
-  button {
+  Button {
     width: 50%;
   }
 </style>
