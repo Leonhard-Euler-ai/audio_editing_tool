@@ -1,7 +1,7 @@
 <template>
   <el-button-group class="MainViewFooter">
     <el-button type="danger" icon="el-icon-arrow-left" @click="logout">取消登录</el-button>
-    <el-button type="success" disabled="true">编辑视频<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+    <el-button type="success" @click="edit">编辑视频<i class="el-icon-arrow-right el-icon--right"></i></el-button>
   </el-button-group>
 </template>
 
@@ -18,6 +18,9 @@
           })
           this.$router.replace('/login')
         })
+      },
+      edit() {
+        //在上传成功后解禁绿色按钮，点击即可转到编辑界面
       }
     }
   }
