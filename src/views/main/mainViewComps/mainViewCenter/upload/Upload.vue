@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="position: relative">
     <div class="upload">
       <el-upload drag show-file-list
                  :accept="acceptFileTypes"
@@ -100,7 +100,15 @@ export default {
 }
 
 .loading {
-  display: inline-block;
+  position: absolute;
+  top: 100px;
+  right: 30%;
+}
+
+.loading::after {
+  content: '上传进度';
+  display: block;
+  text-align: center;
 }
 
 .el-progress {

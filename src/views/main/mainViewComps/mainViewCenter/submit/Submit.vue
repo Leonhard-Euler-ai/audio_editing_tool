@@ -25,7 +25,6 @@
 <style scoped>
   video {
     display: block;
-
     margin: 20px auto;
     width: 560px;
     height: 315px;
