@@ -1,9 +1,10 @@
 <template>
   <div style="position: relative">
     <div class="upload">
+<!--      action="https://jsonplaceholder.typicode.com/posts/"-->
       <el-upload drag show-file-list
                  :accept="acceptFileTypes"
-                 action="https://jsonplaceholder.typicode.com/posts/"
+                 action="http://localhost:8181/upload/video"
                  :limit="limitCount"
                  :on-exceed="fileCountExceed"
                  :file-list="fileList"
