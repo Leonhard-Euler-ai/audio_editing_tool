@@ -34,3 +34,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 2. 因1，导致前端输入/main能直接跳转到主界面，但若从/login输入账号密码则是正常处理流程
 3. 文件上传成功或失败时，element-ui自带的上传行为会从状态码判断成功与否，
    但是后端返回的真正状态码在响应体的code中，因此会出现`$message("上传成功")`,实则仍未登录或上传失败
+4. 需调整上传状态样式，略调测试input(太靠左了)
