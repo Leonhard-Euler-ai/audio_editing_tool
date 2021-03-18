@@ -31,14 +31,10 @@
     },
     methods: {
       logout() {
-        window.sessionStorage.removeItem('authorization')
+        //重新设置登录状态
         this.$store.dispatch('logout')
-          // .then(res => {
-          // this.$message.info({
-          //   message: res,
-          //   offset: 200
-          // })
-          this.$router.replace('/login')
+        //退出登录跳转到登录页面
+        this.$router.replace('/login')
       },
       preStepClick(){
         if(this.preStepTitle==="退出登录"){

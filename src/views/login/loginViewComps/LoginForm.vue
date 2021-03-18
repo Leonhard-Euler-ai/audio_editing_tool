@@ -94,22 +94,26 @@ export default {
       this.isShowPassword = !this.isShowPassword
     },
     // 登录按钮点击事件
-    // commitLogin() {
-    //   向服务器发送登录请求
-    //   requestLogin(username, password, verCode).then(res => {
-    //     ------------------
-    //   })
-    // }
-    // 登录按钮点击事件,直接登录成功,'123'为测试用的sessionId
     commitLogin() {
-      window.sessionStorage.setItem('authorization', '123')
-      this.$store.dispatch('loginSucceed', '123').then(res => {
-        this.$message.success({
-          message: res,
-          offset: 200
-        })
+      //===============
+      // 用户名、密码、验证码非空验证
+      //===============
+
+      //发送网络请求
+      requestLogin(this.phone, this.password, this.verCode).then(axiosRes => {
+        //登录成功后的操作
+        if (axiosRes.data.code === 200) {
+          // 1、获取token
+          let token = axiosRes.request.getResponseHeader("token")
+          // 2、通过设置token改变登录状态,为前端路由跳转提供判断条件
+          // 3、当不采用token验证，即用session时,第1、2步可省略,此时token设为任意非空字符串即可
+          this.$store.dispatch('loginSucceed', token).then(res => {
+            this.$router.push('/main')
+            // 此处应为axiosRes原生返回数据，此大括号内的参数res为dispatch的回调结果
+            this.$message.success(axiosRes.data.message)
+          })
+        }
       })
-      this.$router.push('/main')
     }
   }
 }

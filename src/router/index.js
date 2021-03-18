@@ -5,6 +5,9 @@ Vue.use(VueRouter)
 
 const Login = () => import('views/login/LoginView')
 const Main = () => import('views/main/MainView')
+const Failure=()=>import('components/common/NotFound')
+
+import loginStatus from '@/store/getters'
 
 const routes = [
   {
@@ -18,6 +21,13 @@ const routes = [
   {
     path: '/main',
     component: Main
+  },
+  {
+    path:'/notfound',
+    component: Failure
+  },{
+    path:'/*',
+    component:Failure
   }
 ]
 
@@ -31,8 +41,9 @@ router.beforeEach(((to, from, next) => {
   if (to.path === '/login') {
     return next()
   }
-  const isAuthorized = window.sessionStorage.getItem('authorization')
-  if (!isAuthorized) {
+  //Vue.prototype.$store.state.token.length===0
+  //console.log(loginStatus);
+  if (!loginStatus) {
     return next('/login')
   }
   next()
