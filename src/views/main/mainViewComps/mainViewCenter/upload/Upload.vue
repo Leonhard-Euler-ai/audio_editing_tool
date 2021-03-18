@@ -1,14 +1,15 @@
 <template>
-  <div style="position: relative">
+  <div>
     <div class="upload">
-<!--      action="https://jsonplaceholder.typicode.com/posts/"-->
       <el-upload drag show-file-list
+                 name="file"
                  :accept="acceptFileTypes"
-                 action="http://localhost:8181/upload/video"
+                 :action="action"
+                 :with-credentials="true"
+                 :headers="headers"
                  :limit="limitCount"
-                 :on-exceed="fileCountExceed"
                  :file-list="fileList"
-
+                 :on-exceed="fileCountExceed"
                  :before-upload="beforeUpload"
                  :on-progress="upLoading"
                  :on-success="uploadSuccess"
@@ -36,17 +37,17 @@ export default {
       fileList: [],
       videoUploadPercent: 0,
       progressStatus: 'exception',
-      headers:{'Access-Control-Allow-Origin': '*'}
+      action: "http://localhost:8182/upload/video",
+      headers: {
+        token: this.$store.state.token
+      }
     }
   },
   methods: {
-    uploadPost() {
-      //:http-request="uploadPost"
-      console.log('post');
-    },
-
     beforeUpload(file) {
-      console.log(file.type);
+      // 控制台输出文件类型，测试用
+      console.log("上传文件类型: " + file.type);
+
       if (['image/jpeg', 'image/png', 'audio/mpeg', 'video/mp4', 'audio/ogg', 'video/flv',
         'video/avi', 'video/wmv', 'video/rmvb'].indexOf(file.type) === -1) {
         this.$message.error('上传文件只能是视频文件!');
@@ -72,11 +73,12 @@ export default {
       this.$emit("finishUpload");
       this.fileList = fileList;
 
-      console.log(response);
-      console.log(this.fileList);
+      // 文件上传成功后控制台输入信息，测试用
+      console.log("上传成功后upload组件的响应(真正结果在network中查看)： " + response.toString());
+      console.log("上传成功后的文件列表： " + this.fileList.length);
     },
 
-    uploadFailed() {
+    uploadFailed(err, file, fileList) {
       this.progressStatus = "exception"
       this.$message.error("上传失败！");
     },
@@ -86,6 +88,7 @@ export default {
       this.$emit("removeOnlyFile")
     },
 
+    // 当所传文件大小超过限制格式的监听事件,已设为1
     fileCountExceed() {
       this.$message.warning("只能上传处理单个视频");
     }
@@ -101,15 +104,7 @@ export default {
 }
 
 .loading {
-  position: absolute;
-  top: 100px;
-  right: 30%;
-}
-
-.loading::after {
-  content: '上传进度';
-  display: block;
-  text-align: center;
+  display: inline-block;
 }
 
 .el-progress {

@@ -21,7 +21,8 @@
     },
     data(){
       return{
-        videoUrl:'http://v2v.cc/~j/theora_testsuite/320x240.ogg'
+        //videoUrl:'http://v2v.cc/~j/theora_testsuite/320x240.ogg'
+        videoUrl:'#'
       }
     },
     methods:{

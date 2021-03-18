@@ -59,152 +59,147 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+import {mapGetters} from 'vuex'
 
-  import {requestLogin} from "network/login";
+import {requestLogin} from "network/login";
 
-  export default {
-    name: "LoginForm",
-    data() {
-      return {
-        phonePatternTip: '',
-        isShowPassword: false,
-        phone: '',
-        password: '',
-        verCode: ''
+export default {
+  name: "LoginForm",
+  data() {
+    return {
+      phonePatternTip: '',
+      isShowPassword: false,
+      phone: '',
+      password: '',
+      verCode: ''
+    }
+  },
+  computed: {
+    ...mapGetters(['loginStatus'])
+  },
+  methods: {
+    //事件监听相关的方法
+
+    //当手机号输入框失去焦点时,检测格式是否正确
+    phoneInputBlur() {
+      const pattern = /^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+      if (!pattern.test(this.phone)) {
+        this.phonePatternTip = "请输入正确的手机号!"
+      } else {
+        this.phonePatternTip = ''
       }
     },
-    computed: {
-      ...mapGetters(['loginStatus'])
+    //密码是否可见点击事件
+    isShowPasswordImgClick() {
+      this.isShowPassword = !this.isShowPassword
     },
-    methods: {
-      //事件监听相关的方法
+    // 登录按钮点击事件
+    commitLogin() {
+      //===============
+      // 用户名、密码、验证码非空验证
+      //===============
 
-      //当手机号输入框失去焦点时,检测格式是否正确
-      phoneInputBlur() {
-        const pattern = /^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
-        if (!pattern.test(this.phone)) {
-          this.phonePatternTip = "请输入正确的手机号!"
-        } else {
-          this.phonePatternTip = ''
-        }
-      },
-      //密码是否可见点击事件
-      isShowPasswordImgClick() {
-        this.isShowPassword = !this.isShowPassword
-      },
-      // 登录按钮点击事件
-      // commitLogin() {
-      //   向服务器发送登录请求
-      //   requestLogin(username, password, verCode).then(res => {
-      //     ------------------
-      //   })
-      // }
-      // 登录按钮点击事件,直接登录成功,'123'为测试用的sessionId
-
-      commitLogin() {
-        const user = {
-          name: this.phone,
-          pwd: this.password
-        }
-        axios.post('http://localhost:8181/login', user).then(function (resp) {
-          console.log(resp)
-        })
-
-        window.sessionStorage.setItem('authorization', '123')
-        this.$store.dispatch('loginSucceed', '123').then(res => {
-          this.$message.success({
-            message: res,
-            offset: 200
+      //发送网络请求
+      requestLogin(this.phone, this.password, this.verCode).then(axiosRes => {
+        //登录成功后的操作
+        if (axiosRes.data.code === 200) {
+          // 1、获取token
+          let token = axiosRes.request.getResponseHeader("token")
+          // 2、通过设置token改变登录状态,为前端路由跳转提供判断条件
+          // 3、当不采用token验证，即用session时,第1、2步可省略,此时token设为任意非空字符串即可
+          this.$store.dispatch('loginSucceed', token).then(res => {
+            this.$router.push('/main')
+            // 此处应为axiosRes原生返回数据，此大括号内的参数res为dispatch的回调结果
+            this.$message.success(axiosRes.data.message)
           })
-        })
-        this.$router.push('/main')
-      }
+        }
+      })
     }
   }
+}
 </script>
 
 <style scoped>
-  .loginForm {
-    margin-top: 30px;
-  }
+.loginForm {
+  margin-top: 30px;
+}
 
-  .phoneTip {
-    position: absolute;
-    top: 40px;
-    left: 0px;
-    font-size: 10px;
-    color: red;
-    height: 10px;
-  }
+.phoneTip {
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  font-size: 10px;
+  color: red;
+  height: 10px;
+}
 
-  .label {
-    font-size: 14px;
-    margin-top: 15px;
-    color: #333;
-    margin-left: 5px;
-  }
+.label {
+  font-size: 14px;
+  margin-top: 15px;
+  color: #333;
+  margin-left: 5px;
+}
 
-  .inputBox {
-    position: relative;
-    margin-top: 5px;
-    border: 1px solid #D6DBDF;
-  }
+.inputBox {
+  position: relative;
+  margin-top: 5px;
+  border: 1px solid #D6DBDF;
+}
 
-  input {
-    box-sizing: border-box;
-    width: 100%;
-    border: none;
-    height: 38px;
-    line-height: 38px;
-    border-radius: 2px;
-    background: #fff;
-    padding: 0px 30px 0px 45px;
-    display: block;
-  }
+input {
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  height: 38px;
+  line-height: 38px;
+  border-radius: 2px;
+  background: #fff;
+  padding: 0px 30px 0px 45px;
+  display: block;
+}
 
-  .inputIco {
-    display: block;
-    width: 38px;
-    height: 38px;
-    position: absolute;
-    top: 1px;
-    left: 1px;
-  }
+.inputIco {
+  display: block;
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}
 
-  .passwordVisibility {
-    display: block;
-    width: 18px;
-    height: 18px;
-    position: absolute;
-    top: 9px;
-    right: 8px;
-  }
+.passwordVisibility {
+  display: block;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 9px;
+  right: 8px;
+}
 
-  .verificationCode {
-    float: right;
-    display: block;
-    width: 33%;
-    height: 38px;
-    margin-top: 5px;
-  }
+.verificationCode {
+  float: right;
+  display: block;
+  width: 33%;
+  height: 38px;
+  margin-top: 5px;
+}
 
-  .loginButton {
-    margin-top: 15px;
-    display: block;
-    width: 100%;
-    height: 42px;
-    line-height: 42px;
-    border-radius: 2px;
-    background: #ff662f;
-    text-align: center;
-    color: #fff;
-    font-size: 16px;
-    border: 0;
-  }
+.loginButton {
+  margin-top: 15px;
+  display: block;
+  width: 100%;
+  height: 42px;
+  line-height: 42px;
+  border-radius: 2px;
+  background: #ff662f;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  border: 0;
+}
 
-  .loginButton:hover {
-    text-decoration: none;
-    opacity: 0.85;
-  }
+.loginButton:hover {
+  text-decoration: none;
+  opacity: 0.85;
+}
 </style>

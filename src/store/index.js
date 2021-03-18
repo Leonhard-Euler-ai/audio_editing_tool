@@ -9,7 +9,7 @@ import getters from "./getters";
 
 export default new Vuex.Store({
   state: {
-    authorization: sessionStorage.getItem('authorization') ? sessionStorage.getItem('authorization') : null
+    token: ""
   },
   mutations,
   actions,
