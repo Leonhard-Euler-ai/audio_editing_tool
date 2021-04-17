@@ -28,10 +28,16 @@ export function request(config) {
 
   //响应拦截器
   instance.interceptors.response.use(res => {
-    console.log("响应拦截器中的状态码: " + res.status);
+    // console.log("响应拦截器中的状态码: " + res.status);
+    // console.log("响应拦截器中的res"+res)
+    // console.log("返回数据类型"+res.data.type)
+    if (res.data.type === "text/xml") {
+      // console.log("相应数据类型是text/xml")
+      return res;
+    }
     if (res.data.code === 404) {
       // 不提示信息，直接返回res
-    }else if (res.data.code !== 200) {
+    } else if (res.data.code !== 200) {
       Vue.prototype.$message.error(res.data.message)
     }
     return res;

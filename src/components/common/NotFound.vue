@@ -19,7 +19,7 @@ export default {
   font-family: "Lantinghei SC", "Helvetica Neue", "Microsoft YaHei", "WenQuanYi Micro Hei", "Heiti SC", "Segoe UI", Arial, sans-serif;
   font-size: 12px;
 
-  padding: 180px 15px 112px;
+  padding: 100px 15px;
   margin-right: auto;
   margin-left: auto;
 
@@ -28,7 +28,7 @@ export default {
 
 .tcy_404 img {
   display: block;
-  margin: auto
+  margin: 0 auto;
 }
 
 .tcy_404 h2 {

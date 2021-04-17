@@ -29,6 +29,7 @@
         }
       }
     },
+
     methods: {
       logout() {
         //重新设置登录状态
@@ -49,13 +50,18 @@
         }
         this.$emit("preStepClick")
       },
-      nextStepClick(){
-        if(this.nextStepTitle==="确认提交"){
+      nextStepClick() {
+        if (this.nextStepTitle === "确认更改") {
+          this.$emit("finishEdit")
+          this.$Bus.$emit("finishEdit")
+        }
+        if (this.nextStepTitle === "确认提交") {
           this.$confirm('确认提交?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
-            type:"info"
+            type: "info"
           }).then(() => {
+            this.$emit("finishSubmit")
             this.$message({
               type: 'success',
               message: '提交成功!'

@@ -22,13 +22,13 @@ const routes = [
     path: '/main',
     component: Main
   },
-  {
-    path:'/notfound',
-    component: Failure
-  },{
-    path:'/*',
-    component:Failure
-  }
+  // {
+  //   path:'/notfound',
+  //   component: Failure
+  // },{
+  //   path:'/*',
+  //   component:Failure
+  // }
 ]
 
 const router = new VueRouter({
@@ -38,14 +38,14 @@ const router = new VueRouter({
 })
 
 router.beforeEach(((to, from, next) => {
-  if (to.path === '/login') {
-    return next()
-  }
-  //Vue.prototype.$store.state.token.length===0
-  //console.log(loginStatus);
-  if (!loginStatus) {
-    return next('/login')
-  }
+  // if (to.path === '/login') {
+  //   return next()
+  // }
+  // //Vue.prototype.$store.state.token.length===0
+  // //console.log(loginStatus);
+  // if (!loginStatus) {
+  //   return next('/login')
+  // }
   next()
 }))
 

@@ -20,9 +20,63 @@
         <div class="el-upload__tip" slot="tip">一次只能上传单个视频文件，且不超过2GB</div>
       </el-upload>
     </div>
-    <div class="loading">
-      <el-progress class="el-progress" type="circle" :percentage="videoUploadPercent"
-                   :status="progressStatus"></el-progress>
+    <!--    <div class="loading">-->
+    <!--      <el-progress class="el-progress" type="circle" :percentage="videoUploadPercent"-->
+    <!--                   :status="progressStatus"></el-progress>-->
+    <!--    </div>-->
+    <div class="form">
+      <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="视频名称">
+          <el-input v-model="form.name"></el-input>
+        </el-form-item>
+        <el-form-item label="观看权限">
+          <el-select v-model="form.region" placeholder="请选择上传的专栏" value="">
+            <el-option label="会员免费" value=""></el-option>
+            <el-option label="付费观看" value=""></el-option>
+            <el-option label="免费观看" value=""></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="定时上传">
+          <el-col :span="11">
+            <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+          </el-col>
+          <el-col class="line" :span="2">------</el-col>
+          <el-col :span="11">
+            <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="允许弹幕">
+          <el-switch v-model="form.delivery"></el-switch>
+        </el-form-item>
+        <!--        <el-form-item label="课程类别">-->
+        <!--          <el-checkbox-group v-model="form.type">-->
+        <!--            <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>-->
+        <!--            <el-checkbox label="地推活动" name="type"></el-checkbox>-->
+        <!--            <el-checkbox label="线下主题活动" name="type"></el-checkbox>-->
+        <!--            <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>-->
+        <!--          </el-checkbox-group>-->
+        <!--        </el-form-item>-->
+        <el-form-item label="课程类别">
+          <el-radio-group v-model="form.resource">
+            <el-radio label="芯片技术"></el-radio>
+            <el-radio label="操作系统"></el-radio>
+            <el-radio label="数据库"></el-radio>
+            <el-radio label="信息安全"></el-radio>
+            <el-radio label="中间件"></el-radio>
+            <el-radio label="办公套件"></el-radio>
+            <el-radio label="云计算与大数据"></el-radio>
+            <el-radio label="后端开发"></el-radio>
+            <el-radio label="Web前端"></el-radio>
+            <el-radio label="信创课程"></el-radio>
+            <el-radio label="数字化课程"></el-radio>
+            <el-radio label="综合类课程"></el-radio>
+            <el-radio label="实训类课程"></el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="视频介绍">
+          <el-input type="textarea" v-model="form.desc"></el-input>
+        </el-form-item>
+      </el-form>
     </div>
   </div>
 </template>
@@ -40,6 +94,15 @@ export default {
       action: "http://localhost:8182/upload/video",
       headers: {
         token: this.$store.state.token
+      },
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        resource: '',
+        desc: ''
       }
     }
   },
@@ -58,12 +121,13 @@ export default {
         this.$message.error('上传文件大小不能超过2GB!');
         return false;
       }
+      this.$message.info('上传进行中，请不要退出此界面，该过程可能会持续几分钟');
       return true;
     },
 
     upLoading(event, file, fileList) {
       this.progressStatus = 'success';
-      this.videoUploadPercent = parseInt(file.percentage.toFixed(0));
+      // this.videoUploadPercent = parseInt(file.percentage.toFixed(0));
     },
 
     uploadSuccess(response, file, fileList) {
@@ -98,13 +162,17 @@ export default {
 
 <style scoped>
 .upload {
+  float: left;
   display: inline-block;
   width: 38%;
-  margin: 80px 0 0 150px;
+  margin: 120px 0 0 150px;
 }
 
-.loading {
+.form {
+  float: left;
   display: inline-block;
+  width: 40%;
+  margin: 50px 30px 0 0;
 }
 
 .el-progress {

@@ -69,8 +69,8 @@ export default {
     return {
       phonePatternTip: '',
       isShowPassword: false,
-      phone: '',
-      password: '',
+      phone: '13300001111',
+      password: '123456',
       verCode: ''
     }
   },
@@ -98,7 +98,6 @@ export default {
       //===============
       // 用户名、密码、验证码非空验证
       //===============
-
       //发送网络请求
       requestLogin(this.phone, this.password, this.verCode).then(axiosRes => {
         //登录成功后的操作
