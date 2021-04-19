@@ -1,11 +1,11 @@
 import {request} from "network/request";
 
-export function requestGetVideo(imgUrl) {
+export function requestGetVideo(url) {
   return request({
     url: '/getFileStream',
     responseType: 'blob',
     params: {
-      imgUrl
+      url
     }
   })
 }

@@ -54,7 +54,6 @@
       scrollBarTipClick(index) {
         // this.$message.success("点击下方第" + index + "个图片，发送请求")
         this.$Bus.$emit("imgClick", {index, 'parent': this.parent})
-        this.imgURL = ""//？？？？？
       }
     }
   }

@@ -5,7 +5,9 @@ Vue.use(VueRouter)
 
 const Login = () => import('views/login/LoginView')
 const Main = () => import('views/main/MainView')
-const Failure=()=>import('components/common/NotFound')
+const Administrator = () => import('views/administrator/AdministratorView')
+const Play = () => import('views/play/PlayView')
+const Failure = () => import('components/common/NotFound')
 
 import loginStatus from '@/store/getters'
 
@@ -22,13 +24,21 @@ const routes = [
     path: '/main',
     component: Main
   },
-  // {
-  //   path:'/notfound',
-  //   component: Failure
-  // },{
-  //   path:'/*',
-  //   component:Failure
-  // }
+  {
+    path: '/administrator',
+    component: Administrator
+  },
+  {
+    path: '/play',
+    component: Play
+  },
+  {
+    path: '/notfound',
+    component: Failure
+  }, {
+    path: '/*',
+    component: Failure
+  }
 ]
 
 const router = new VueRouter({

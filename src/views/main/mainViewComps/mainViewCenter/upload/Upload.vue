@@ -48,14 +48,6 @@
         <el-form-item label="允许弹幕">
           <el-switch v-model="form.delivery"></el-switch>
         </el-form-item>
-        <!--        <el-form-item label="课程类别">-->
-        <!--          <el-checkbox-group v-model="form.type">-->
-        <!--            <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>-->
-        <!--            <el-checkbox label="地推活动" name="type"></el-checkbox>-->
-        <!--            <el-checkbox label="线下主题活动" name="type"></el-checkbox>-->
-        <!--            <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>-->
-        <!--          </el-checkbox-group>-->
-        <!--        </el-form-item>-->
         <el-form-item label="课程类别">
           <el-radio-group v-model="form.resource">
             <el-radio label="芯片技术"></el-radio>

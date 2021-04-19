@@ -35,6 +35,7 @@
           class="upload-demo"
           ref="upload"
           action="http://localhost:8182/upload/mp3"
+          :with-credentials="true"
           :file-list="fileList"
           :limit=1
           :data="{'currentIndex':currentIndex}"

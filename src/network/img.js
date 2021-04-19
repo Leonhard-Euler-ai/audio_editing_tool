@@ -1,12 +1,12 @@
 import {request} from "network/request";
 
-export function requestImg(imgUrl) {
+export function requestImg(url) {
   return request({
     // method: "get",
     url: '/getFileStream',
     responseType: 'blob',
     params: {
-      imgUrl
+      url
     }
   })
 }

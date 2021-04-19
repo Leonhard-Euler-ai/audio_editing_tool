@@ -34,7 +34,7 @@
     data() {
       return {
         nextStepIsDisabled: true,  //开始为true,不能点击
-        stepTitles: ["退出登录", "上传视频", "编辑视频", "确认更改", "确认提交"],
+        stepTitles: ["退出登录", "上传视频", "编辑视频", "确认更改", "效果预览"],
         currentStepIndex: 1,
         preStepTitle: "退出登录",
         nextStepTitle: "编辑视频",

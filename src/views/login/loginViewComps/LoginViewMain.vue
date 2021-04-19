@@ -2,7 +2,7 @@
   <div class="loginViewMain">
     <div>
       <a>返回首页</a>
-      <a class="administratorLoginButton">管理员登录</a>
+      <a class="administratorLoginButton" @click="administrator">管理员登录</a>
     </div>
     <div class="loginFormBox">
       <a class="formTitle">手机号登录</a>
@@ -25,6 +25,11 @@
     name: "LoginViewLeft",
     components: {
       LoginForm
+    },
+    methods: {
+      administrator() {
+        this.$router.push('/administrator')
+      }
     }
   }
 </script>
