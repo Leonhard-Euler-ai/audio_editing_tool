@@ -18,7 +18,7 @@
         <el-button size="small" type="primary">点击上传视频封面</el-button>
         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>
-      <el-form ref="form" :model="form" label-width="80px">
+      <el-form ref="form" :model="form" label-width="80px" style="margin-top: 20px">
         <el-form-item label="文字水印">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
@@ -54,8 +54,8 @@
           </el-select>
         </el-form-item>
       </el-form>
+      <el-button type="message" round @click="finalSubmit">保存并退出系统</el-button>
     </div>
-    <el-button type="message" round @click="finalSubmit">保存并退出系统</el-button>
   </div>
 </template>
 
@@ -64,9 +64,10 @@
     name: "PlayView",
     mounted() {
       this.$Bus.$on("mergeClick", videoUrl => {
+
         this.videoSrc = videoUrl;
-        console.log("最后的播放页面接收的视频src" + this.videoSrc)
-        this.$refs.video.load();
+        console.log("src" + this.videoSrc)
+        this.$refs.modifiedVideo.load();
       })
     },
     data() {
@@ -110,13 +111,21 @@
     float: left;
     display: inline-block;
     width: 38%;
-    margin: 120px 0 0 150px;
+    margin: 120px 0 0 100px;
+  }
+
+  video {
+    display: inline-block;
+    float: left;
+    margin: 20px 20px 10px 0;
+    width: 560px;
+    height: 315px;
   }
 
   .form {
     float: left;
     display: inline-block;
-    width: 40%;
-    margin: 50px 30px 0 0;
+    width: 30%;
+    margin: 80px 0 0 80px;
   }
 </style>

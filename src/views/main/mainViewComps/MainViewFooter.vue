@@ -59,15 +59,22 @@
         if (this.nextStepTitle === "效果预览") {
           this.$message.info('系统处理中，请不要退出此界面，该过程可能会持续几分钟');
           //开始发送请求,让后台合并,成功后直接跳转到最后的界面
-          requestGetVideo(null).then(axiosRes => {
+          requestGetVideo("success").then(axiosRes => {
             let videoBlob = axiosRes.data
             let videoUrl = URL.createObjectURL(videoBlob);
-            console.log(videoUrl)
+            console.log("得到的最终的视频src" + videoUrl)
 
             //将视频链接发给最后的界面
             // this.$refs.video.load();
-            this.$Bus.$emit("mergeClick", videoUrl)
+
+            // this.$nextTick(function () {
+            //   this.$Bus.$emit("mergeClick", videoUrl)
+            // })
             this.$router.push('/play')
+            let _this = this
+            setTimeout(function () {
+              _this.$Bus.$emit("mergeClick", videoUrl)
+            }, 2000)
           })
         }
         // if (this.nextStepTitle === "确认提交") {

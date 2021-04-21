@@ -48,7 +48,7 @@
           <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
           <template #tip>
             <div class="el-upload__tip">
-              只能上传一个 mp3 文件，且文件大小不超过 5mb
+              只能上传一个音频文件，且文件大小不超过 10MB
             </div>
           </template>
         </el-upload>
@@ -87,8 +87,8 @@
     },
     watch: {
       contents(newValue) {
-        this.originalContents = newValue
-        this.editContents = newValue
+        this.originalContents = new Object(newValue)
+        this.editContents = JSON.parse(JSON.stringify(newValue))
       }
     },
     mounted() {
@@ -102,13 +102,16 @@
         let promises = []
 
         // 首先判断两个文字数组中不同的元素，将不同元素依次上传到服务器
+        console.log("原文字片长度" + this.originalContents.length);
         for (let i = 0; i < this.originalContents.length; i++) {
-          if (this.originalContents[i] !== this.editContents[i]) {
+          if (this.originalContents[i] !== (this.editContents[i])) {
+            console.log("当前视频片的文字被更改了，视频编号为" + i)
             promises.push(requestEditByCharacter(i, this.editContents[i]).then(res => {
             }))
           }
         }
         Promise.all(promises).then(res => {
+          console.log("文字的合成请求也已经发送完毕，开始请求图片")
           // 所有文字片段后台合成成功
           // 触发事件，传送更改后的数据给父组件，以便给Submit.vue界面prop赋值
           requestEdit().then(axiosRes => {
@@ -141,8 +144,8 @@
     },
     data() {
       return {
-        originalContents: this.contents,
-        editContents: this.contents,
+        originalContents: new Object(this.contents),
+        editContents: JSON.parse(JSON.stringify(this.contents)),
 
         currentIndex: 0,
         // currentContent: this.originalContents[0] ? this.originalContents[0] : "",
@@ -157,7 +160,9 @@
       editTextareaBlur() {
         this.editContents[this.currentIndex] = this.editContent
         console.log("当前index为:" + this.currentIndex + ",更改后的内容为:" + this.editContent)
-        console.log(this.editContents)
+        //console.log(this.currentContent)
+        // console.log(this.originalContents)
+        // console.log(this.editContents)
       },
       handleClick(tab, event) {
         console.log(tab, event);

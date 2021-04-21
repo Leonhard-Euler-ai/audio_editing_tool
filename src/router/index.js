@@ -9,8 +9,6 @@ const Administrator = () => import('views/administrator/AdministratorView')
 const Play = () => import('views/play/PlayView')
 const Failure = () => import('components/common/NotFound')
 
-import loginStatus from '@/store/getters'
-
 const routes = [
   {
     path: '',

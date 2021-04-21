@@ -399,7 +399,7 @@
 
   header .showTime {
     height: 20px;
-    width: 275px;
+    width: 280px;
     position: absolute;
     top: 10px;
     right: 10px;
